@@ -1,0 +1,91 @@
+body
+{
+    padding:0px;
+    margin:0px;
+    box-sizing: border-box;
+    
+}
+
+li
+{
+    list-style-type: none;
+    font-weight: bold;
+    color:white
+}
+nav{
+    background-color: orangered;
+}
+ul
+{
+    display:flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+}
+nav a
+{
+    color:white;
+    text-decoration: none;
+}
+h2
+{
+    margin-left:2rem
+}
+#groupsDiv
+{
+    
+  
+    text-align: center;
+
+    
+}
+#info
+{
+    font-size: larger;
+    font-weight: bold;
+
+}
+
+#result
+{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding:5px;
+    font-size: 12px;
+    font-weight: bold;
+
+
+}
+#result div
+{
+    margin:0px 10px 0px 10px;
+    
+
+}
+
+#displayResult
+{
+    background:black;
+    color:orangered;
+    padding:4px;
+    display:none;
+    margin:auto auto;
+    border-radius: 40px;
+    
+}
+
+#groups
+{
+    width:100px;
+    height:30px;
+    text-align: center;
+  
+    font-weight: bold;
+    border:2px solid black
+}
+
+#classification
+{
+    display:none
+}
