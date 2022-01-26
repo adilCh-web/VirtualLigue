@@ -122,7 +122,6 @@ let object = document.getElementById("groups")
 
 function displayGroups()
 {
-    document.getElementById("classification").style.display = "none"
     document.getElementById("displayResult").style.display = "block"
 
     if(object.value == "group1")
@@ -277,11 +276,15 @@ function displayGames()
     for(let i = 0;i<groups.length;i++)
     {
 
-        let p1=0, p2=0, p3 =0, p4 = 0
+        let p1=0, p2=0, p3 =0, p4 = 0 
+        let g1 =0, g2=0 ,g3=0, g4=0
+
         console.log("group"+ Number(i+1))
         if(object.value == "group"+ Number(i+1))
         {
             //console.log("condition met")
+
+            // div teams 1
 
             divTeam1.innerHTML = 
             groups[i][0] + "<br>" +
@@ -292,6 +295,8 @@ function displayGames()
             groups[i][1] 
             document.getElementById("result").appendChild(divTeam1)
 
+            // div result games
+
             divResult.innerHTML = 
             scrores[i][0].toString().replace(",", " - ") + "<br>" +
             scrores[i][1].toString().replace(",", " - ") + "<br>" + "<br>" +
@@ -299,8 +304,11 @@ function displayGames()
             scrores[i][3].toString().replace(",", " - ") + "<br>" + "<br>" +
             scrores[i][4].toString().replace(",", " - ") + "<br>" +
             scrores[i][5].toString().replace(",", " - ")
+            
 
             //points Game1
+            g1+= scrores[i][0][0]
+            g2+= scrores[i][0][1]
             if(scrores[i][0][0] > scrores[i][0][1])
             {
                 p1+=3
@@ -314,6 +322,8 @@ function displayGames()
                 p2+=1
             }
                         //points Game2
+            g3+= scrores[i][1][0]
+            g4+= scrores[i][1][1]
             if(scrores[i][1][0] > scrores[i][1][1])
             {
                 p3+=3
@@ -327,6 +337,8 @@ function displayGames()
                 p4+=1
             }
                         //points Game3
+            g1+=scrores[i][2][0]
+            g4+=scrores[i][2][1]
             if(scrores[i][2][0] > scrores[i][2][1])
             {
                 p1+=3
@@ -340,6 +352,9 @@ function displayGames()
                 p4+=1
             }
                         //points Game4
+
+            g2+=scrores[i][3][0]
+            g3+=scrores[i][3][1]
             if(scrores[i][3][0] > scrores[i][3][1])
             {
                 p2+=3
@@ -353,6 +368,8 @@ function displayGames()
                 p3+=1
             }
                         //points Game5
+            g1+=scrores[i][4][0] 
+            g3+=scrores[i][4][1]
             if(scrores[i][4][0] > scrores[i][4][1])
             {
                 p1+=3
@@ -366,6 +383,8 @@ function displayGames()
                 p1+=1
             }
                         //points Game6
+            g2+=scrores[i][5][0]
+            g4+=scrores[i][5][1]
             if(scrores[i][5][0] > scrores[i][5][1])
             {
                 p2+=3
@@ -378,11 +397,20 @@ function displayGames()
                 p4+=1
                 p2+=1
             }
-            document.getElementById("classification").innerHTML = 
-            groups[i][0] + " : " + p1 +"<br>" +
-            groups[i][1] + " : " + p2 +"<br>" + 
-            groups[i][2] + " : " + p3 +"<br>" +
-            groups[i][3] + " : " + p4 
+            let teamAndPoint = [[p1,g1,groups[i][0]],[p2,g2,groups[i][1]],[p3,g3,groups[i][2]],[p4,g4,groups[i][3]]]
+            document.getElementById("team1").innerHTML = teamAndPoint.sort().reverse()[0][2]
+            document.getElementById("team2").innerHTML = teamAndPoint.sort().reverse()[1][2]
+            document.getElementById("team3").innerHTML = teamAndPoint.sort().reverse()[2][2]
+            document.getElementById("team4").innerHTML = teamAndPoint.sort().reverse()[3][2]
+            document.getElementById("team1P").innerHTML = teamAndPoint.sort().reverse()[0][0]
+            document.getElementById("team2P").innerHTML =teamAndPoint.sort().reverse()[1][0]
+            document.getElementById("team3P").innerHTML =teamAndPoint.sort().reverse()[2][0]
+            document.getElementById("team4P").innerHTML = teamAndPoint.sort().reverse()[3][0]
+            document.getElementById("team1G").innerHTML = teamAndPoint.sort().reverse()[0][1]
+            document.getElementById("team2G").innerHTML =teamAndPoint.sort().reverse()[1][1]
+            document.getElementById("team3G").innerHTML =teamAndPoint.sort().reverse()[2][1]
+            document.getElementById("team4G").innerHTML = teamAndPoint.sort().reverse()[3][0]
+
 
             document.getElementById("result").appendChild(divResult)
             divTeam2.innerHTML = 
@@ -404,7 +432,7 @@ function displayResult()
 {
     document.getElementById("div2").style.display = "block"
 
-    setTimeout(()=>{document.getElementById("classification").style.display = "block"},4000)
+    setTimeout(()=>{document.getElementsByTagName("table")[0].style.display = "block"},4000)
 }
 
 

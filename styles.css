@@ -85,7 +85,26 @@ h2
     border:2px solid black
 }
 
-#classification
+table
 {
-    display:none
+    display:none;
+    text-align:left;
+    margin:30px auto 0px auto;  
+    width:200px;
+    
+}
+
+table,td,th {
+    font-size:14px;
+    padding:2px;
+    border-collapse: collapse;  
+  }
+
+th
+{
+    background-color:orangered
+}
+td,th
+{
+    border: 2px solid black;
 }
