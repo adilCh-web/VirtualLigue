@@ -5,6 +5,11 @@ body
     box-sizing: border-box;
     
 }
+#info
+{
+    font-size:larger;
+    font-weight:bold;
+}
 
 li
 {
@@ -14,6 +19,7 @@ li
 }
 nav{
     background-color: orangered;
+    font-size:12px
 }
 ul
 {
@@ -39,14 +45,17 @@ h2
 
     
 }
-#info
+#infoMessage
 {
-    font-size: larger;
+    font-size: 12;
     font-weight: bold;
+    color:red;
+    font-style: italic;
+    text-align: center;
 
 }
 
-#result
+#result, #round16
 {
     display:flex;
     align-items: center;
@@ -57,7 +66,7 @@ h2
 
 
 }
-#result div
+#result div, #round16 div
 {
     margin:0px 10px 0px 10px;
     
@@ -108,3 +117,21 @@ td,th
 {
     border: 2px solid black;
 }
+
+nav button
+{
+    background-color:orangered;
+    color:white;
+    border:orangered
+}
+
+nav button:focus
+{
+    background-color:rgb(241, 147, 113)
+}
+
+nav button:hover
+{
+    background-color:rgb(126, 71, 51)
+}
+
