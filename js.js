@@ -7,9 +7,8 @@ const team5 = ["Fc Lyon","As Roma","Villarreal","Benifica","PSV Eindhoven"]
 const team6 = ["Slavia Prague","Shakhtar Donetsk","Olympiakos","Zenit St. Petersburg","Dinamo Zagreb"]
 let teams 
 teams = team2.concat(team3,team4,team5,team6)
-let logos = logos2.concat(logos3,logos4,logos5,logos6)
 
-let logos = ['./img/barcelona.png', './img/liverpool.png', './img/madrid.png', './img/bayern.png', './img/city.png', './img/united.png', './img/paris.png', './img/milan.png', './img/juventus.png', './img/chelsea.png', './img/valencia.png', './img/dortmund.png', './img/inter.png', './img/arsenal.png', './img/ajax.png', './img/atletico.png', './img/porto.png', './img/tottenham.png', './img/sevilla.png', './img/salzburg.png', './img/napoli.png', './img/leverkusen.png', './img/lyon.png', ' ./img/roma.png', './img/villarreal.png', './img/benifica.png', './img/eindhoven.png', './img/prague.png', './img/shakhtar.png', './img/olympiakos.png', './img/zenit.png. ./img/petersburg.png', './img/dinamo.png']
+
 var storeInnerHtml
 let teams16 = []
 var teams8 = []
