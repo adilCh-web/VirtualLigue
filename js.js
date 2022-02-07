@@ -1,4 +1,5 @@
 const team1 = ["Fc Barcelona","Fc Liverpool", "Real Madrid","Bayern Munich","Manchester City"]
+
 const team2 = ["Manchester Utd","Paris S-G","Ac Milan","Juventus","Chelsea"]
 const team3 = ["Fc Valencia","Borussia Dortmund","Inter Milan","Fc Arsenal","Ajax Amsterdam","Atlético Madrid"]
 const team4 = ["Fc Porto","Tottenham","Fc Sevilla","Red Bull Salzburg","SSC Napoli","Bayer Leverkusen"]
@@ -6,18 +7,25 @@ const team5 = ["Fc Lyon","As Roma","Villarreal","Benifica","PSV Eindhoven"]
 const team6 = ["Slavia Prague","Shakhtar Donetsk","Olympiakos","Zenit St. Petersburg","Dinamo Zagreb"]
 let teams 
 teams = team2.concat(team3,team4,team5,team6)
-let logos = ['./img/barcelona.png', './img/liverpool.png', './img/madrid.png', './img/bayern.png', './img/city.png', './img/united.png', './img/paris.png', './img/milan.png', './img/juventus.png', './img/chelsea.png', './img/valencia.png', './img/dortmund.png', './img/inter.png', './img/arsenal.png', './img/ajax.png', './img/atletico.png', './img/porto.png', './img/tottenham.png', './img/sevilla.png', './img/salzburg.png', './img/napoli.png', './img/leverkusen.png', './img/lyon.png', ' ./img/roma.png', './img/villarreal.png', './img/benifica.png', './img/eindhoven.png', './img/prague.png', './img/shakhtar.png', './img/olympiakos.png', './img/zenit.png. ./img/petersburg.png', './img/dinamo.png']
+let logos = logos2.concat(logos3,logos4,logos5,logos6)
 
+let logos = ['./img/barcelona.png', './img/liverpool.png', './img/madrid.png', './img/bayern.png', './img/city.png', './img/united.png', './img/paris.png', './img/milan.png', './img/juventus.png', './img/chelsea.png', './img/valencia.png', './img/dortmund.png', './img/inter.png', './img/arsenal.png', './img/ajax.png', './img/atletico.png', './img/porto.png', './img/tottenham.png', './img/sevilla.png', './img/salzburg.png', './img/napoli.png', './img/leverkusen.png', './img/lyon.png', ' ./img/roma.png', './img/villarreal.png', './img/benifica.png', './img/eindhoven.png', './img/prague.png', './img/shakhtar.png', './img/olympiakos.png', './img/zenit.png. ./img/petersburg.png', './img/dinamo.png']
+var storeInnerHtml
 let teams16 = []
-let teams8 = []
+var teams8 = []
 let teams4 = []
 FinalTeams = []
+
+let groupNotPlayed = []
+for(let i =1;i<9;i++){groupNotPlayed.push("group"+i)}
+
+
 //console.log(teams.length)
 
 //lets separate the stronger teams --team1
 let groups = [[],[],[],[],[],[],[],[]]
 let n=0;
-let  m=0
+
 let indexSelected = []
 while(n !== team1.length )
 {
@@ -25,12 +33,12 @@ while(n !== team1.length )
     if(indexSelected.includes(index) === false)
     {
         indexSelected.push(index)
-        groups[m].push(team1[index])
-        m+=1
+        groups[n].push(team1[index])
+       
         n+=1
     }
 }
-console.log(groups)
+// console.log(groups)
 let alreadyChoised = []
 
 // adding the rst of the teams 
@@ -127,51 +135,28 @@ let object = document.getElementById("groups")
 
 function displayGroups()
 {
+    if(groupNotPlayed.includes(object.value) == true)
+
+    {
+        groupNotPlayed.splice(groupNotPlayed.indexOf(object.value),1)
+    }
     document.getElementById("displayResult").style.display = "block"
 
     document.getElementsByTagName("table")[0].style.display = "none"
 
-    if(object.value == "group1")
-    
-    
+    for(let i =1;i<9;i++)
     {
-        document.getElementById("info").innerHTML =  groups[0][0]+  "<br>" + 
-          groups[0][1] +  "<br>" + groups[0][2]  + "<br>" + groups[0][3] + "<br>" 
+    let group = "group"+i
+    if(object.value == group)
+        {
+            document.getElementById("info").innerHTML =  groups[i-1][0]+  "<br>" + 
+            groups[i-1][1] +  "<br>" + groups[i-1][2]  + "<br>" + groups[i-1][3] + "<br>" 
+
+        }
+
     }
 
-      
-    else if(object.value ==="group2")
-    {
-        document.getElementById("info").innerHTML = groups[1][0] + "<br>" + groups[1][1] + "<br>" + groups[1][2] + "<br>" + groups[1][3]
-    }
-    else if(object.value ==="group3")
-        {
-            document.getElementById("info").innerHTML = groups[2][0] + "<br>" + groups[2][1] + "<br>" + groups[2][2] + "<br>" + groups[2][3]
-        }
-        else if(object.value === "group4")
-        {
-            document.getElementById("info").innerHTML = groups[3][0] + "<br>" + groups[3][1] + "<br>" + groups[3][2] + "<br>" + groups[3][3]
-        }
 
-        else if(object.value === "group5")
-        {
-            document.getElementById("info").innerHTML = groups[4][0] + "<br>" + groups[4][1] + "<br>" + groups[4][2] + "<br>" + groups[4][3]
-
-        }
-
-        else if(object.value === "group6")
-        {
-            document.getElementById("info").innerHTML = groups[5][0] + "<br>" + groups[5][1] + "<br>" + groups[5][2] + "<br>" + groups[5][3]
-        }
-
-        else if(object.value === "group7")
-        {
-            document.getElementById("info").innerHTML = groups[6][0] + "<br>" + groups[6][1] + "<br>" + groups[6][2] + "<br>" + groups[6][3]
-        }
-      else if (object.value === "group8")
-        {
-            document.getElementById("info").innerHTML = groups[7][0] + "<br>" + groups[7][1] + "<br>" + groups[7][2] + "<br>" + groups[7][3]
-        }
 
         displayGames()
 }
@@ -275,15 +260,15 @@ function displayGames()
     let divTeam2 = document.createElement("div")
     divTeam2.setAttribute("id","div3")
 
-    console.log("clisked")
-    console.log(object.value)
+    //console.log("ckicked")
+    //console.log(object.value)
     for(let i = 0;i<groups.length;i++)
     {
 
         let p1=0, p2=0, p3 =0, p4 = 0 
         let g1 =0, g2=0 ,g3=0, g4=0
 
-        console.log("group"+ Number(i+1))
+        //console.log("group"+ Number(i+1))
         if(object.value == "group"+ Number(i+1))
         {
             //console.log("condition met")
@@ -427,7 +412,7 @@ function displayGames()
             document.getElementById("team1G").innerHTML = teamAndPoint.sort().reverse()[0][1]
             document.getElementById("team2G").innerHTML =teamAndPoint.sort().reverse()[1][1]
             document.getElementById("team3G").innerHTML =teamAndPoint.sort().reverse()[2][1]
-            document.getElementById("team4G").innerHTML = teamAndPoint.sort().reverse()[3][0]
+            document.getElementById("team4G").innerHTML = teamAndPoint.sort().reverse()[3][1]
 
             //passing the qualifying team to the teams16 array
             if (teams16.includes(teamAndPoint.sort().reverse()[0][2]) == false)
@@ -438,14 +423,16 @@ function displayGames()
             {
                 teams16.push(teamAndPoint.sort().reverse()[1][2])
             }
-            console.log(teams16)
-            console.log(teams16.length)
+
+
         }
     }
     
 }
 
-function displayResult()
+
+
+function displayResult()   
 {
     document.getElementById("div2").style.display = "block"
 
@@ -455,164 +442,125 @@ function displayResult()
 
 //console.log(scrores)
 
+function drawAndReseult(teams,numberOfTeams,btn)
+{
+    let qualifiedTeam = []
+    if(teams.length == numberOfTeams)
+    {
+        btn.setAttribute('disabled', 'disabled')
+        let decrease = Number(numberOfTeams-1)
+        document.getElementById("round16teams1").innerHTML= document.getElementById("round16teams1").innerHTML + "<hr>" + "<hr>" 
 
+        document.getElementById("round16Result").innerHTML= document.getElementById("round16Result").innerHTML + "<hr>" + "<hr>" 
+
+        document.getElementById("round16teams2").innerHTML= document.getElementById("round16teams2").innerHTML + "<hr>" + "<hr>" 
+        for(let i =0;i<numberOfTeams/2;i++)
+        {   
+            document.getElementById("round16teams1").innerHTML = document.getElementById("round16teams1").innerHTML+ "<br>" + teams[i]
+
+            document.getElementById("round16teams2").innerHTML = document.getElementById("round16teams2").innerHTML + "<br>" + teams[decrease] 
+            console.log(teams[decrease])
+ 
+            let result = scooring(teams[i],teams[decrease])
+            document.getElementById("round16Result").innerHTML =document.getElementById("round16Result").innerHTML+ "<br>" + result.toString().replace(","," - ") 
+            if(result[0] > result[1])
+            {
+                qualifiedTeam.push(teams[i])
+            }
+            else if(result[0] < result[1])
+            {
+                qualifiedTeam.push(teams[decrease])
+            }
+            else
+            {
+                let index = Math.floor(Math.random()*2)
+                qualifiedTeam.push([teams[i],teams[decrease]][index])
+            }
+            decrease-=1
+
+
+        }
+        console.log(qualifiedTeam)
+        return qualifiedTeam
+        
+    }
+
+}
 // phase 16 teams
 function display16Teams()
 {
-    if (teams16.length == 16)
+    if(teams16.length == 16)
     {
-
-        document.getElementById("button16").setAttribute('disabled', 'disabled')
-        document.getElementById("round16teams1").innerHTML = teams16[0] + "<br>" + teams16[1] + "<br>" + teams16[2] + "<br>" + teams16[3] + "<br>" + teams16[4] + "<br>" + teams16[5] + "<br>" +teams16[6] + "<br>" + teams16[7] 
-
-        
-        document.getElementById("round16teams2").innerHTML = teams16[15] + "<br>" + teams16[14] + "<br>" + teams16[13] + "<br>" + teams16[12] + "<br>" + teams16[11] + "<br>" + teams16[10] + "<br>" +teams16[9] + "<br>" + teams16[8] 
-
-        let r1 =  scooring(teams16[0],teams16[15])
-        let r2 = scooring(teams16[1],teams16[14])
-        let r3 = scooring(teams16[2],teams16[13])
-        let r4 =  scooring(teams16[3],teams16[12])
-        let r5 = scooring(teams16[4],teams16[11])
-        let r6 = scooring(teams16[5],teams16[10])
-        let r7 =  scooring(teams16[6],teams16[9])
-        let r8 = scooring(teams16[7],teams16[8])
-  
-
-        document.getElementById("round16Result").innerHTML = r1.toString().replace(","," - ") + "<br>" + r2.toString().replace(","," - ") + "<br>" + 
-        r3.toString().replace(","," - ") + "<br>" + 
-        r4.toString().replace(","," - ")+ "<br>" + 
-        r5.toString().replace(","," - ")+ "<br>" +
-        r6.toString().replace(","," - ") + "<br>" +
-        r7.toString().replace(","," - ") + "<br>" + 
-        r8.toString().replace(","," - ") 
-        let decrease = 15
-        let results = [r1,r2,r3,r4,r5,r6,r7,r8]
-        for (let i =0;i<8;i++)
-        {
-            if(results[i][0] > results[i][1])
-            {
-                teams8.push(teams16[i])
-            }
-            else if (results[i][0] < results[i][1])
-            {
-                teams8.push(teams16[decrease])
-            }
-            else  //case draw select random team
-            {
-                teams8.push([teams16[decrease],teams16[i]][Math.floor(Math.random()*2)])
-            }
-            decrease-=1
-        }
-        console.log(teams8)
-        
+        teams8 = drawAndReseult(teams16,16,document.getElementById("button16"))
     }
     else
     {
-        document.getElementById("infoMessage").innerHTML = "Still In Play";
+        
+        console.log(groupNotPlayed)
+        document.getElementById("infoMessage").innerHTML = groupNotPlayed.toString().replace(",", " ") + " Still In Play";
         setTimeout(() => { document.getElementById("infoMessage").innerHTML = ""
-            
+                
         }, 4000);
-
+       
     }
+
+
 }
 
 
 function quarterFinal()
 {
+    console.log(teams8.length)
     if (teams8.length == 8)
     {
-
-        document.getElementById("button8").setAttribute('disabled', 'disabled')
-        let previousInnerhtml1 = document.getElementById("round16teams1").innerHTML
-        let previousInnerhtml2 = document.getElementById("round16teams2").innerHTML
-        document.getElementById("round16teams1").innerHTML = previousInnerhtml1 + "<br>" + "<hr><hr>" + "<br>" + teams8[0] + "<br>" +
-        teams8[1] + "<br>" + teams8[2] + "<br>" + teams8[3] 
-
-        document.getElementById("round16teams2").innerHTML = previousInnerhtml2 + "<br>" + "<hr><hr>" + "<br>"  + teams8[7] + "<br>" +
-        teams8[6] + "<br>" + teams8[5] + "<br>" + teams8[4] 
-        let r1 = scooring(teams8[0],teams8[7])
-        let r2 = scooring(teams8[1],teams8[6])
-        let r3 = scooring(teams8[2],teams8[5])
-        let r4 = scooring(teams8[3],teams8[4])
-        let previousInnerhtml3 = document.getElementById("round16Result").innerHTML
-        document.getElementById("round16Result").innerHTML = previousInnerhtml3 + "<br>" + "<hr><hr>" + "<br>" + r1.toString().replace(","," - ") + "<br>" + r2.toString().replace(","," - ") + "<br>" + r3.toString().replace(","," - ") + "<br>" + r4.toString().replace(","," - ") 
-
-        let decrease = 7
-        let results = [r1,r2,r3,r4]
-        for (let i =0;i<4;i++)
-        {
-            if(results[i][0] > results[i][1])
-            {
-                teams4.push(teams8[i])
-            }
-            else if (results[i][0] < results[i][1])
-            {
-                teams4.push(teams8[decrease])
-            }
-            else  //case draw select random team
-            {
-                teams4.push([teams8[decrease],teams8[i]][Math.floor(Math.random()*2)])
-            }
-            decrease-=1
-        }
-
-        
+        teams4 = drawAndReseult(teams8,8,document.getElementById("button8"))
     }
     else
     {
 
-        document.getElementById("infoMessage").innerHTML = "Still In Play";
+        document.getElementById("infoMessage").innerHTML = "check this Round later";
         setTimeout(() => { document.getElementById("infoMessage").innerHTML = ""
-                
-        }, 4000);
+
+        }, 4000);    
     }
+
+   
 }
+
 
 function semiFinal()
 {
+    console.log("hallooooo")
     if (teams4.length == 4)
     {
-        document.getElementById("button4").setAttribute('disabled', 'disabled')
-        let previousInnerhtml1 = document.getElementById("round16teams1").innerHTML
-        let previousInnerhtml2 = document.getElementById("round16teams2").innerHTML
-        document.getElementById("round16teams1").innerHTML = previousInnerhtml1 + "<br>" + "<hr><hr>" + "<br>" + teams4[0] + "<br>" +
-        teams4[1] 
-        document.getElementById("round16teams2").innerHTML = previousInnerhtml2 + "<br>" + "<hr><hr>" + "<br>"  + teams4[3] + "<br>" +
-        teams4[2]  
-        let r1 = scooring(teams4[0],teams4[3])
-        let r2 = scooring(teams4[1],teams4[2])
-
-        let previousInnerhtml3 = document.getElementById("round16Result").innerHTML
-        document.getElementById("round16Result").innerHTML = previousInnerhtml3 + "<br>" + "<hr><hr>" + "<br>" + r1.toString().replace(","," - ") + "<br>" + r2.toString().replace(","," - ")
-
-        let decrease = 3
-        let results = [r1,r2]
-        for (let i =0;i<2;i++)
-        {
-            if(results[i][0] > results[i][1])
-            {
-                FinalTeams.push(teams4[i])
-            }
-            else if (results[i][0] < results[i][1])
-            {
-                FinalTeams.push(teams4[decrease])
-            }
-            else  //case draw select random team
-            {
-                FinalTeams.push([teams8[decrease],teams8[i]][Math.floor(Math.random()*2)])
-            }
-            decrease-=1
-        }
-
-        
+        FinalTeams = drawAndReseult(teams4,4,document.getElementById("button4"))
     }
     else
     {
-
-        document.getElementById("infoMessage").innerHTML = "Still In Play";
+        document.getElementById("infoMessage").innerHTML = "check this Round later";
         setTimeout(() => { document.getElementById("infoMessage").innerHTML = ""
-                
-        }, 4000);
+
+        }, 4000);    
     }
 }
+
+function final()
+
+    {
+
+        if (FinalTeams.length == 2)
+        {
+            let winner = drawAndReseult(FinalTeams,2,document.getElementById("button5"))
+            console.log(winner)
+        }
+        else
+        {
+            document.getElementById("infoMessage").innerHTML = "check this Round later";
+            setTimeout(() => { document.getElementById("infoMessage").innerHTML = ""
+
+            }, 4000);    
+        }
+    }
+
+
 
